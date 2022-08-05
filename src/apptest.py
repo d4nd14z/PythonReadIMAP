@@ -17,10 +17,11 @@ imap = imaplib.IMAP4_SSL("outlook.office365.com")
 #Iniciar sesion
 imap.login(username, password)
 
-#status, mensajes = imap.select("INBOX") #Leer todos los mensajes de la bandeja de entrada
-status, mensajes = imap.select("UNSEEN") #Leer todos los mensajes de la bandeja de entrada
+
+status, mensajes = imap.select("INBOX", readonly=False) #Leer todos los mensajes de la bandeja de entrada
 
 #Retorna[b'1'] => Indica que hay 1 correo pendiente por leer
+
 
 unreadMessages = int(mensajes[0])
 
@@ -77,5 +78,3 @@ for i in range(unreadMessages, 0, -1):
 
 imap.close()  #Cerrar conexion IMAP
 imap.logout() #Cerrar correo electronico
-
-
